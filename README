@@ -1,0 +1,78 @@
+В основу положен принцип конструктора. Для переменных задается тип и набор правил.
+
+Например:
+	/**
+	 * <config>
+	 * Login:
+	 *     type: qxString
+	 *     rules: [min(6), alpha_digit_underscore]	
+	 * </config>
+	 */
+	class Login extends qxString {
+	}		
+	
+В данном примере объявлен php класс Login с родителем qxString. Так же указаны два правила: min, alpha_digit_underscore. Каждое правило это обычный public метод в текущем классе или в родительском. Правило-метод может возвращать только true или false.
+
+Ещё примеры:
+	/**
+	 * <config>
+	 * Password:
+	 *     type: qxString
+	 *     rules: [min(6)]
+	 * </config>
+	 */
+	class Password extends qxString {
+	}
+	
+	/**
+	 * <config>
+	 * Email:
+	 *     type: qxString
+	 *     rules: [valid_email]
+	 * </config>
+	 */
+	class Email extends qxString {
+	}
+	
+Пример «смешанного» типа данных:
+	/**
+	 * <config>
+	 * User:
+	 *     # указан параметр fields что означает объект с полями
+	 *     fields:
+	 *         login: 
+	 *             type: Login
+	 *         password: 
+	 *             type: Password
+	 *         confirm_password:
+	 *             type: qxString
+	 *             rules: [eq(password)]
+	 *         email: 
+	 *             type: Email
+	 *             rules: [required@first]
+	 *     # правила заданные в объекте для полей
+	 *     rules: [login.required@first, password.required@first, email.required]
+	 *     # в результате у полей будет следующие наборы правил
+	 *     # login: [required, min(6), alpha_digit_underscore]
+	 *     # password: [required, min(6)]
+	 *     # email: [valid_email, required]
+	 * </config>
+	 */
+	class User extends qxObject {
+	}
+	
+Сам процесс валидации запускается следующим образом:
+	// тут может быть просто $_POST		
+	$user_init = array (
+		'login' => 'myLogin',
+		'password' => 'pass',
+		'confirm_password' => 'pass1',
+		'email' => 'test@test.test'
+	);
+	
+	// при создании объекта каждому полю (login, password, ...) присваевается значение 
+	$user = new User($user_init);
+	// инициализация валидатора - тут происходит построение самих правил в зависимости от типа $user
+	$validator = new Validator($user);
+	// валидация, результат работы массив ошибок
+	$validator->validate();
