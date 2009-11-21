@@ -62,6 +62,7 @@ class User extends qxObject {
 }
 	
 Сам процесс валидации запускается следующим образом:
+
 // тут может быть просто $_POST		
 $user_init = array (
 	'login' => 'myLogin',
