@@ -4,7 +4,7 @@
 /**
  * <config>
  * User:
- *     fields:
+ *     properties:
  *         login: 
  *             type: Login
  *         password: 
@@ -21,11 +21,6 @@
  * </config>
  */
 class User extends qxObject {
-	public $login;
-	public $password;
-	public $confirm_password;
-	public $email;
-	public $info; 
 }
 
 ?>

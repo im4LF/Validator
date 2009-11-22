@@ -10,7 +10,7 @@ class qxObject extends qxDataType {
 		$config = ClassConfig::getInstance()->load($this->_class);	// load configuration of this class				
 		
 		// throughout fields of this class
-		foreach ($config['fields'] as $field => $params) {
+		foreach ($config['properties'] as $field => $params) {
 			$this->{$field} = new $params['type']($value[$field]);	// initialize field
 		}
 	}

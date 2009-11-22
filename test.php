@@ -102,27 +102,23 @@ class qxString extends qxScalar {
 /**
  * @var qxString [alpha_digit_underscore]
  */
-class Login extends qxString {
-}
+class Login extends qxString {}
 
 /**
  * @var qxString [valid]
  */
-class Email extends qxString {
-}
+class Email extends qxString {}
 /**
  * @var qxString [min(6)]
  */
-class Password extends qxString {
-}
+class Password extends qxString {}
 
 /**
  * @var qxString surname 
  * @var qxString firstname
  * @var qxString lastname
  */
-class UserInfo extends qxObject {
-}
+class UserInfo extends qxObject {}
 
 /**
  * @var Login login
@@ -134,14 +130,12 @@ class UserInfo extends qxObject {
  * )
  * @rules [["required"]] 
  */
-class User extends qxObject {
-}
+class User extends qxObject {}
 
 /**
  * @var Email login [exist]
  */
-class AdvUser extends User {
-}
+class AdvUser extends User {}
 
 class ClassConfig {
 	protected $_config;
@@ -205,29 +199,12 @@ $data = array(
 	'confirm_password' => 'confirm'
 );
 
-class A {
-	protected $_properties;
-	
-	function __construct() {
-		$this->asd = 'asd';
-	}
-	
-	function __set($name, $value) {
-		$this->_properties[$name] = $value;
-	}
-	
-	function __get($name) {
-		return $this->_properties[$name];
-	}
-}
-
-class B extends A {}
-
-$a = new A;
-$a->qwe = 'qwe';
-echo print_r($a, 1);
-
-$b = new B;
-$b->zxc = 'zxc';
-echo print_r($b, 1);
+$data = array(
+	'user.login' => 'SomeLogin',
+	'user.password' => 'myPassword',
+	'user.userinfo.surname' => 'Surname',
+	'user.userinfo.firstname' => 'Firstname',
+	'user.userinfo.lastname' => 'Lastname',
+	'confirm_password' => 'confirm'
+);
 ?>

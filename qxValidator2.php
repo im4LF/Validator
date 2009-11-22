@@ -96,15 +96,15 @@ class qxRulesBuilder {
 	}
 	
 	protected function _buildRules($config, $rule_path = '') {
-		if ( isset($config['fields']) ) // if configuration have fields - its object
+		if ( isset($config['properties']) ) // if configuration have properties - its object
 			$this->_buildObjectRules($config, $rule_path);
 		else // its scalar value
 			$this->_buildScalarRules($config, $rule_path);
 	}
 	
 	protected function _buildObjectRules($config, $rule_path = '') {
-		// throughout all fields 
-		foreach ( $config['fields'] as $field => $params ) {
+		// throughout all properties 
+		foreach ( $config['properties'] as $field => $params ) {
 			$type = $params['type']; // type of field
 			
 			$current_rule_path = $rule_path.'.'.$field; // new rule path

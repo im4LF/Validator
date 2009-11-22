@@ -3,7 +3,7 @@
 /**
  * <config>
  * UserAsPartner:
- *     fields:
+ *     properties:
  *         login:
  *             type: Login
  *             rules: [required, unique, >min(6)@required]

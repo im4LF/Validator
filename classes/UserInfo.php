@@ -4,7 +4,7 @@
 /**
  * <config>
  * UserInfo:
- *     fields:
+ *     properties:
  *         surname: 
  *             type: qxString
  *         firstname: 
