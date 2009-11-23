@@ -10,15 +10,6 @@ class URL extends Object {
 	protected $_params;
 	protected $_view;
 	
-	static function s($url) {
-		if ( !self::$_instance ) {
-			$class = __CLASS__; 
-			self::$_instance = new $class($url);
-		}
-			
-		return self::$_instance;
-	}
-	
 	function __construct($url) {
 		if ( is_array($url) ) {
 			$this->_path = $url['path'];
