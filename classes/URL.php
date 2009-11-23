@@ -1,13 +1,23 @@
 <?php
+require_once('./Object.php');
 
-class URL {
+class URL extends Object {
 	
 	protected $_raw_url;
 	protected $_path;
 	protected $_action;
 	protected $_state;
 	protected $_params;
-	protected $_view; 
+	protected $_view;
+	
+	static function s($url) {
+		if ( !self::$_instance ) {
+			$class = __CLASS__; 
+			self::$_instance = new $class($url);
+		}
+			
+		return self::$_instance;
+	}
 	
 	function __construct($url) {
 		if ( is_array($url) ) {
@@ -57,6 +67,8 @@ class URL {
 		
 		$this->_path = preg_replace('/\/+/','/',$this->_path);
 		$this->_path .= $this->_path{strlen($this->_path)-1} == '/'? '' : '/';
+		
+		return $this;
 	}
 	
 	function build() {
@@ -89,5 +101,8 @@ $url = new URL(array(
 	'view' => 'html'
 ));
 $url->build();
-print_r($url);
+echo print_r($url, 1);
+
+$url = URL::n('http://domain.tld/path/to/some-object/.action.some-state/-qwe/value/-asd/value2/-other-key.json')->parse();
+echo print_r($url, 1);
 ?>
