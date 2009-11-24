@@ -4,7 +4,7 @@ class qxObject extends qxDataType {
 	
 	protected $_properties;
 	
-	function __construct( $value ) {
+	function __construct($value) {
 		parent::__construct();
 		
 		$config = ClassConfig::getInstance()->load($this->_class);	// load configuration of this class				

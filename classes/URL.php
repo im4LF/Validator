@@ -10,7 +10,7 @@ class URL extends Object {
 	protected $_params;
 	protected $_view;
 	
-	function __construct($url) {
+	function __construct($url=null) {
 		if ( is_array($url) ) {
 			$this->_path = $url['path'];
 			$this->_action = $url['action'];
@@ -18,7 +18,7 @@ class URL extends Object {
 			$this->_params = $url['params'];
 			$this->_view = $url['view'];
 		}
-		else {
+		elseif ( $url ) {
 			$this->_raw_url = $url;			
 			$this->_action = 'default';
 			$this->_state = 'default';
@@ -84,7 +84,7 @@ class URL extends Object {
 
 //$url = new URL('http://domain.tld/path/to/some-object/.action.some-state/-qwe/value/-asd/value2/-other-key.json');
 //$url->parse();
-$url = new URL(array(
+/*$url = new URL(array(
 	'path' => '/this/is/a/path/to/some-object',
 	'action' => 'edit',
 	'state' => 'done',
@@ -95,5 +95,14 @@ $url->build();
 echo print_r($url, 1);
 
 $url = URL::n('http://domain.tld/path/to/some-object/.action.some-state/-qwe/value/-asd/value2/-other-key.json')->parse();
+echo print_r($url, 1);*/
+
+$url = URL::s('http://domain.tld/some-path.html')->parse();
 echo print_r($url, 1);
+
+$url2 = URL::n('http://domain.tld/new-path.html')->parse();
+echo print_r($url2, 1);
+
+$url3 = URL::s();
+echo print_r($url3, 1);
 ?>

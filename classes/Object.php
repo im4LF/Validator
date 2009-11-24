@@ -3,12 +3,12 @@ class Object {
 
     protected static $_instance;
     
-    static function n($options) {
+    static function n($options=null) {
         $class = get_called_class();
         return new $class($options);
     }
 	
-	static function s($options) {
+	static function s($options=null) {
 		if ( !self::$_instance ) {
 			$class = get_called_class();
 			self::$_instance = new $class($options);
@@ -19,6 +19,7 @@ class Object {
     
 }
 
+// http://php.net/manual/en/function.get-called-class.php
 if (!function_exists('get_called_class')) {
     function get_called_class($bt = false, $l = 1) {
         if (!$bt)
