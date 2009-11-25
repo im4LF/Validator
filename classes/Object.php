@@ -3,9 +3,11 @@ class Object {
 
     protected static $_instance;
     
-    static function n($options=null) {
-        $class = get_called_class();
-        return new $class($options);
+    static function n() {
+		$class = get_called_class();
+    	$args = func_get_args();
+		$reflection = new ReflectionClass($class);
+		return $reflection->newInstanceArgs($args);
     }
 	
 	static function s($options=null) {
