@@ -2,13 +2,15 @@
 
 
 /**
+ * @var String [alpha_digit_underscore]
+ * 
  * <config>
  * Login:
- *     type: qxString
+ *     type: String
  *     rules: [alpha_digit_underscore]	
  * </config>
  */
-class Login extends qxString {
+class Login extends String {
 	function alpha_digit_underscore() {
 		return true;
 	}

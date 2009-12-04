@@ -2,15 +2,22 @@
 
 
 /**
+ * @var String surname
+ * @var String firstname
+ * @var String lastname
+ * @var ExtEmail confirm_email
+ * @var ExtEmail org_email
+ * @rules [surname.required, firstname.required, lastname.required, org_email.neq(.confirm_email]
+ * 
  * <config>
  * UserInfo:
  *     properties:
  *         surname: 
- *             type: qxString
+ *             type: String
  *         firstname: 
- *             type: qxString
+ *             type: String
  *         lastname: 
- *             type: qxString
+ *             type: String
  *         confirm_email:
  *             type: ExtEmail
  *         org_email:
@@ -22,11 +29,6 @@
  *         - org_email.neq(.confirm_email)         
  * </config>
  */
-class UserInfo extends qxObject {
-	public $surname;
-	public $firstname;
-	public $lastname;
-	public $confirm_email;
-	public $org_email;
+class UserInfo extends Object {
 }
 ?>

@@ -39,7 +39,7 @@ class ClassConfig {
 		$this->_config[$class]['reflection'] = $reflection;
 		
 		$this->getParentConfig($class, $reflection);	// recursively load all parent classes configurations
-		$this->parseConfig($class);						// parse configuration of this class
+		$this->parseConfig2($class);						// parse configuration of this class
 		
 		return $this->_config[$class]['config'];
 	}
@@ -107,6 +107,11 @@ class ClassConfig {
 		
 		$this->_config[$class]['config'] = $config['config'][$class];
 		return true;
+	}
+	
+	protected function parseConfig2($class_name) {
+		$doc_comment = $this->_config[$class]['reflection']->getDocComment();
+		if ( !preg_match_all('', $doc_comment, $matches, PREG_SET_ORDER) ) return false;
 	}
 }
 ?>

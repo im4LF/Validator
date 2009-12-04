@@ -1,6 +1,6 @@
 <?php
 
-class qxScalar extends qxDataType {
+class Scalar extends DataType {
 	
 	public $_value;
 	

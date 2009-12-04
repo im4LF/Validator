@@ -1,6 +1,6 @@
 <?php
 
-class qxString extends qxScalar {
+class String extends Scalar {
 	
 	function __construct( $value ) {
 		parent::__construct($value);

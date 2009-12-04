@@ -2,12 +2,14 @@
 
 
 /**
+ * @var String [+required, +min(6)]
+ * 
  * <config>
  * Password:
- *     type: qxString
+ *     type: String
  *     rules: [+required, +min(6)]
  * </config>
  */
-class Password extends qxString {
+class Password extends String {
 }
 ?>

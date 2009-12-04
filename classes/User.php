@@ -2,6 +2,13 @@
 
 
 /**
+ * @var Login login
+ * @var Password password [eq(.confirm_password)]
+ * @var Password confirm_password
+ * @var Email email [required@first]
+ * @var UserInfo info
+ * @rules [login.required@first, password.required, email.required]
+ * 
  * <config>
  * User:
  *     properties:
@@ -20,7 +27,7 @@
  *     rules: [login.required@first, password.required, email.required]
  * </config>
  */
-class User extends qxObject {
+class User extends Object {
 }
 
 ?>

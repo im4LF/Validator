@@ -1,6 +1,6 @@
 <?php
 
-class qxDataType {
+class DataType {
 	
 	protected $_class;
 	

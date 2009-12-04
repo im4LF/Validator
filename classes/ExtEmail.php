@@ -2,6 +2,8 @@
 
 
 /**
+ * @var Email [+exists_email]
+ * 
  * <config>
  * ExtEmail:
  *     type: Email

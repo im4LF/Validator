@@ -75,16 +75,17 @@ $var = qxValidator::init($var, 'Login')->required()->min(6)->alpha_digit_undersc
 
 /**
  * 
- * @param User $user
- * @param qxString $confirm_password [required|eq($user->password)]
+ * @param User $user:post [login.required]
+ * @param String $confirm_password:post [required, eq($user.password), range(6,15)]
+ * @rules $user.password.required, $user.email.required
  * @return 
  */
 function registerUser($user, $confirm_password) {
 	
 }
 
-class qxScalar {}
-class qxObject {
+class Scalar {}
+class Object {
 	protected $_fields;
 	
 	function __construct() {
@@ -94,43 +95,39 @@ class qxObject {
 	}
 }
 
-class qxString extends qxScalar {
+class String extends Scalar {
 	function __construct($value) {
 	}
 }
 
 /**
- * @var qxString [alpha_digit_underscore]
+ * @var String [alpha_digit_underscore]
  */
-class Login extends qxString {}
+class Login extends String {}
 
 /**
- * @var qxString [valid]
+ * @var String [valid]
  */
-class Email extends qxString {}
-/**
- * @var qxString [min(6)]
- */
-class Password extends qxString {}
+class Email extends String {}
 
 /**
- * @var qxString surname 
- * @var qxString firstname
- * @var qxString lastname
+ * @var String [min(6)]
  */
-class UserInfo extends qxObject {}
+class Password extends String {}
+
+/**
+ * @var String surname 
+ * @var String firstname
+ * @var String lastname
+ */
+class UserInfo extends Object {}
 
 /**
  * @var Login login
  * @var Password password 
- * @var UserInfo userinfo (
- * 		surname:	["required","min(5)"], 
- * 		firstname:	["required","min(2)"],
- * 		lastname:	["required","min(3)"]
- * )
- * @rules [["required"]] 
+ * @var UserInfo info [surname.required, firstname.min(2), lastname.min(2)]
  */
-class User extends qxObject {}
+class User extends Object {}
 
 /**
  * @var Email login [exist]
@@ -168,15 +165,19 @@ class ClassConfig {
 		
 		$matches = array();
 		$config = array();
-		if ( preg_match_all('/@var\s+([\w]+)\s+([\w]+)\s+(\[.*?\])?/', $doc_comment, $matches, PREG_SET_ORDER) ) {
+		if ( preg_match_all('/@var\s+([\w]+)\s+([\w]+)\s+(\[(.*?)\])?/', $doc_comment, $matches, PREG_SET_ORDER) ) {
 			echo print_r($matches, 1);
 			foreach ( $matches as $buf ) {
-				$config['fields'][$buf[2]]['type'] = $buf[1];
+				$config['properties'][$buf[2]]['type'] = $buf[1];
 				
-				if ( !isset($buf[3]) )
-					continue;
+				if ( !isset($buf[4]) ) continue;
 					
+				if ( !preg_match_all('/(.+?)(,\s|$)/', $buf[4], $rules, PREG_SET_ORDER) ) continue;
 				
+				echo print_r($rules, 1);
+				foreach ( $rules as $rule ) {
+					$config['properties'][$buf[2]]['rules'][] = $rule[1];
+				}
 			}
 			$this->_config[$class]['config'] = $config;
 		}
@@ -184,8 +185,9 @@ class ClassConfig {
 }
 
 $config = new ClassConfig;
-//$config->load('User');
-//echo print_r($config,1);
+$config->load('User');
+echo print_r($config,1);
+
 $data = array(
 	'user' => array(
 		'login' => 'SomeLogin',
