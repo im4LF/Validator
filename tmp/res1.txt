@@ -1,0 +1,756 @@
+load: UserAsPartner
+load: User
+load: Object
+load: DataType
+load: ClassConfig
+load: Login
+load: String
+load: Scalar
+load: Password
+load: Email
+load: UserInfo
+load: ExtEmail
+ClassConfig: ClassConfig Object
+(
+    [_config:protected] => Array
+        (
+            [ClassConfig] => Array
+                (
+                    [reflection] => ReflectionClass Object
+                        (
+                            [name] => ClassConfig
+                        )
+
+                    [config] => 
+                )
+
+            [DataType] => Array
+                (
+                    [reflection] => ReflectionClass Object
+                        (
+                            [name] => DataType
+                        )
+
+                    [config] => 
+                )
+
+            [Object] => Array
+                (
+                    [reflection] => ReflectionClass Object
+                        (
+                            [name] => Object
+                        )
+
+                    [config] => 
+                )
+
+            [User] => Array
+                (
+                    [reflection] => ReflectionClass Object
+                        (
+                            [name] => User
+                        )
+
+                    [config] => Array
+                        (
+                            [properties] => Array
+                                (
+                                    [login] => Array
+                                        (
+                                            [type] => Login
+                                        )
+
+                                    [password] => Array
+                                        (
+                                            [type] => Password
+                                            [rules] => Array
+                                                (
+                                                    [0] => eq(.confirm_password)
+                                                )
+
+                                        )
+
+                                    [confirm_password] => Array
+                                        (
+                                            [type] => Password
+                                        )
+
+                                    [email] => Array
+                                        (
+                                            [type] => Email
+                                            [rules] => Array
+                                                (
+                                                    [0] => required@first
+                                                )
+
+                                        )
+
+                                    [info] => Array
+                                        (
+                                            [type] => UserInfo
+                                        )
+
+                                )
+
+                            [rules] => Array
+                                (
+                                    [0] => login.required@first
+                                    [1] => password.required
+                                    [2] => email.required
+                                )
+
+                        )
+
+                )
+
+            [UserAsPartner] => Array
+                (
+                    [reflection] => ReflectionClass Object
+                        (
+                            [name] => UserAsPartner
+                        )
+
+                    [parents] => Array
+                        (
+                            [0] => User
+                        )
+
+                    [config] => Array
+                        (
+                            [properties] => Array
+                                (
+                                    [login] => Array
+                                        (
+                                            [type] => Login
+                                            [rules] => Array
+                                                (
+                                                    [0] => required
+                                                    [1] => unique
+                                                    [2] => >min(6)@required
+                                                )
+
+                                        )
+
+                                    [password] => Array
+                                        (
+                                            [type] => Password
+                                            [rules] => Array
+                                                (
+                                                    [0] => eq(.confirm_password)
+                                                )
+
+                                        )
+
+                                    [confirm_password] => Array
+                                        (
+                                            [type] => Password
+                                        )
+
+                                    [email] => Array
+                                        (
+                                            [type] => Email
+                                            [rules] => Array
+                                                (
+                                                    [0] => required@first
+                                                )
+
+                                        )
+
+                                    [info] => Array
+                                        (
+                                            [type] => UserInfo
+                                        )
+
+                                    [company] => Array
+                                        (
+                                            [type] => String
+                                        )
+
+                                )
+
+                            [rules] => Array
+                                (
+                                    [0] => login.required@first
+                                    [1] => password.required
+                                    [2] => email.required
+                                    [3] => -info.*name.req*
+                                    [4] => info.surname.required@first
+                                    [5] => email.required@first
+                                    [6] => info.confirm_email.eq(.email)
+                                )
+
+                        )
+
+                )
+
+            [Scalar] => Array
+                (
+                    [reflection] => ReflectionClass Object
+                        (
+                            [name] => Scalar
+                        )
+
+                    [config] => 
+                )
+
+            [String] => Array
+                (
+                    [reflection] => ReflectionClass Object
+                        (
+                            [name] => String
+                        )
+
+                    [config] => 
+                )
+
+            [Login] => Array
+                (
+                    [reflection] => ReflectionClass Object
+                        (
+                            [name] => Login
+                        )
+
+                    [config] => Array
+                        (
+                            [type] => 
+                        )
+
+                )
+
+            [Password] => Array
+                (
+                    [reflection] => ReflectionClass Object
+                        (
+                            [name] => Password
+                        )
+
+                    [config] => Array
+                        (
+                            [type] => 
+                        )
+
+                )
+
+            [Email] => Array
+                (
+                    [reflection] => ReflectionClass Object
+                        (
+                            [name] => Email
+                        )
+
+                    [config] => Array
+                        (
+                            [type] => 
+                        )
+
+                )
+
+            [UserInfo] => Array
+                (
+                    [reflection] => ReflectionClass Object
+                        (
+                            [name] => UserInfo
+                        )
+
+                    [config] => Array
+                        (
+                            [properties] => Array
+                                (
+                                    [surname] => Array
+                                        (
+                                            [type] => String
+                                        )
+
+                                    [firstname] => Array
+                                        (
+                                            [type] => String
+                                        )
+
+                                    [lastname] => Array
+                                        (
+                                            [type] => String
+                                        )
+
+                                    [confirm_email] => Array
+                                        (
+                                            [type] => ExtEmail
+                                        )
+
+                                    [org_email] => Array
+                                        (
+                                            [type] => ExtEmail
+                                        )
+
+                                )
+
+                            [rules] => Array
+                                (
+                                    [0] => surname.required
+                                    [1] => firstname.required
+                                    [2] => lastname.required
+                                    [3] => org_email.neq(.confirm_email
+                                )
+
+                        )
+
+                )
+
+            [ExtEmail] => Array
+                (
+                    [reflection] => ReflectionClass Object
+                        (
+                            [name] => ExtEmail
+                        )
+
+                    [parents] => Array
+                        (
+                            [0] => Email
+                        )
+
+                    [config] => Array
+                        (
+                            [type] => 
+                        )
+
+                )
+
+        )
+
+)
+
+--------------------
+Array
+(
+    [data] => Array
+        (
+            [.login] => Array
+                (
+                    [0] => qxRule Object
+                        (
+                            [_raw_rule:protected] => login.required@first
+                            [_raw_args:protected] => 
+                            [_raw_position:protected] => first
+                            [_name:protected] => required
+                            [_path:protected] => .login
+                            [_defined_at:protected] => 
+                            [_args:protected] => 
+                            [_position:protected] => 0
+                            [_mode:protected] => +
+                            [_pointers:protected] => Array
+                                (
+                                )
+
+                        )
+
+                    [1] => qxRule Object
+                        (
+                            [_raw_rule:protected] => >min(6)@required
+                            [_raw_args:protected] =>  6
+                            [_raw_position:protected] => required
+                            [_name:protected] => min
+                            [_path:protected] => .login
+                            [_defined_at:protected] => .login
+                            [_args:protected] =>  6
+                            [_position:protected] => 0
+                            [_mode:protected] => >
+                            [_pointers:protected] => Array
+                                (
+                                )
+
+                        )
+
+                    [2] => qxRule Object
+                        (
+                            [_raw_rule:protected] => required
+                            [_raw_args:protected] => 
+                            [_raw_position:protected] => 
+                            [_name:protected] => required
+                            [_path:protected] => .login
+                            [_defined_at:protected] => .login
+                            [_args:protected] => 
+                            [_position:protected] => 0
+                            [_mode:protected] => +
+                            [_pointers:protected] => Array
+                                (
+                                )
+
+                        )
+
+                    [3] => qxRule Object
+                        (
+                            [_raw_rule:protected] => unique
+                            [_raw_args:protected] => 
+                            [_raw_position:protected] => 
+                            [_name:protected] => unique
+                            [_path:protected] => .login
+                            [_defined_at:protected] => .login
+                            [_args:protected] => 
+                            [_position:protected] => 1
+                            [_mode:protected] => +
+                            [_pointers:protected] => Array
+                                (
+                                )
+
+                        )
+
+                )
+
+            [.password] => Array
+                (
+                    [0] => qxRule Object
+                        (
+                            [_raw_rule:protected] => eq(.confirm_password)
+                            [_raw_args:protected] =>  .confirm_password
+                            [_raw_position:protected] => 
+                            [_name:protected] => eq
+                            [_path:protected] => .password
+                            [_defined_at:protected] => .password
+                            [_args:protected] =>  .confirm_password
+                            [_position:protected] => 0
+                            [_mode:protected] => +
+                            [_pointers:protected] => Array
+                                (
+                                    [0] => Array
+                                        (
+                                            [prefix] =>  
+                                            [path] => .confirm_password
+                                        )
+
+                                )
+
+                        )
+
+                    [1] => qxRule Object
+                        (
+                            [_raw_rule:protected] => password.required
+                            [_raw_args:protected] => 
+                            [_raw_position:protected] => 
+                            [_name:protected] => required
+                            [_path:protected] => .password
+                            [_defined_at:protected] => 
+                            [_args:protected] => 
+                            [_position:protected] => 1
+                            [_mode:protected] => +
+                            [_pointers:protected] => Array
+                                (
+                                )
+
+                        )
+
+                )
+
+            [.email] => Array
+                (
+                    [0] => qxRule Object
+                        (
+                            [_raw_rule:protected] => email.required@first
+                            [_raw_args:protected] => 
+                            [_raw_position:protected] => first
+                            [_name:protected] => required
+                            [_path:protected] => .email
+                            [_defined_at:protected] => 
+                            [_args:protected] => 
+                            [_position:protected] => 0
+                            [_mode:protected] => +
+                            [_pointers:protected] => Array
+                                (
+                                )
+
+                        )
+
+                    [1] => qxRule Object
+                        (
+                            [_raw_rule:protected] => required@first
+                            [_raw_args:protected] => 
+                            [_raw_position:protected] => first
+                            [_name:protected] => required
+                            [_path:protected] => .email
+                            [_defined_at:protected] => .email
+                            [_args:protected] => 
+                            [_position:protected] => 0
+                            [_mode:protected] => +
+                            [_pointers:protected] => Array
+                                (
+                                )
+
+                        )
+
+                    [2] => qxRule Object
+                        (
+                            [_raw_rule:protected] => email.required
+                            [_raw_args:protected] => 
+                            [_raw_position:protected] => 
+                            [_name:protected] => required
+                            [_path:protected] => .email
+                            [_defined_at:protected] => 
+                            [_args:protected] => 
+                            [_position:protected] => 1
+                            [_mode:protected] => +
+                            [_pointers:protected] => Array
+                                (
+                                )
+
+                        )
+
+                )
+
+            [.info.surname] => Array
+                (
+                    [0] => qxRule Object
+                        (
+                            [_raw_rule:protected] => info.surname.required@first
+                            [_raw_args:protected] => 
+                            [_raw_position:protected] => first
+                            [_name:protected] => required
+                            [_path:protected] => .info.surname
+                            [_defined_at:protected] => 
+                            [_args:protected] => 
+                            [_position:protected] => 0
+                            [_mode:protected] => +
+                            [_pointers:protected] => Array
+                                (
+                                )
+
+                        )
+
+                )
+
+            [.info.firstname] => Array
+                (
+                )
+
+            [.info.lastname] => Array
+                (
+                )
+
+            [.info.org_email.neq(] => Array
+                (
+                    [0] => qxRule Object
+                        (
+                            [_raw_rule:protected] => org_email.neq(.confirm_email
+                            [_raw_args:protected] => 
+                            [_raw_position:protected] => 
+                            [_name:protected] => confirm_email
+                            [_path:protected] => .info.org_email.neq(
+                            [_defined_at:protected] => .info
+                            [_args:protected] => 
+                            [_position:protected] => 0
+                            [_mode:protected] => +
+                            [_pointers:protected] => Array
+                                (
+                                )
+
+                        )
+
+                )
+
+            [.info.confirm_email] => Array
+                (
+                    [0] => qxRule Object
+                        (
+                            [_raw_rule:protected] => info.confirm_email.eq(.email)
+                            [_raw_args:protected] =>  .email
+                            [_raw_position:protected] => 
+                            [_name:protected] => eq
+                            [_path:protected] => .info.confirm_email
+                            [_defined_at:protected] => 
+                            [_args:protected] =>  .email
+                            [_position:protected] => 0
+                            [_mode:protected] => +
+                            [_pointers:protected] => Array
+                                (
+                                    [0] => Array
+                                        (
+                                            [prefix] =>  
+                                            [path] => .email
+                                        )
+
+                                )
+
+                        )
+
+                )
+
+        )
+
+)
+call ".login.required()"
+Login Object
+(
+    [_value] => myLogin
+    [_class:protected] => Login
+)
+Array
+(
+)
+call ".login.min()"
+Login Object
+(
+    [_value] => myLogin
+    [_class:protected] => Login
+)
+Array
+(
+    [0] => 6
+)
+call ".login.required()"
+Login Object
+(
+    [_value] => myLogin
+    [_class:protected] => Login
+)
+Array
+(
+)
+call ".login.unique()"
+Login Object
+(
+    [_value] => myLogin
+    [_class:protected] => Login
+)
+Array
+(
+)
+call ".password.eq()"
+
+Warning: Invalid argument supplied for foreach() in R:\im4LF\projects\workspace-galileo\qxValidator\qxValidator2.php on line 32
+
+Call Stack:
+    0.0002      65192   1. {main}() R:\im4LF\projects\workspace-galileo\qxValidator\index.php:0
+    0.0137     602072   2. qxValidator->validate() R:\im4LF\projects\workspace-galileo\qxValidator\index.php:35
+    0.0147     769224   3. qxValidator->_applyRuleByPath() R:\im4LF\projects\workspace-galileo\qxValidator\qxValidator2.php:21
+    0.0147     770368   4. qxValidator->_applyRule() R:\im4LF\projects\workspace-galileo\qxValidator\qxValidator2.php:33
+    0.0147     772456   5. qxValidator->_applyRuleByPath() R:\im4LF\projects\workspace-galileo\qxValidator\qxValidator2.php:47
+
+"qweqwe1"Password Object
+(
+    [_value] => qweqwe
+    [_class:protected] => Password
+)
+Array
+(
+    [0] => qweqwe1
+)
+call ".password.required()"
+Password Object
+(
+    [_value] => qweqwe
+    [_class:protected] => Password
+)
+Array
+(
+)
+call ".email.required()"
+Email Object
+(
+    [_value] => qwe@qwe.qwe
+    [_class:protected] => Email
+)
+Array
+(
+)
+call ".email.required()"
+Email Object
+(
+    [_value] => qwe@qwe.qwe
+    [_class:protected] => Email
+)
+Array
+(
+)
+call ".email.required()"
+Email Object
+(
+    [_value] => qwe@qwe.qwe
+    [_class:protected] => Email
+)
+Array
+(
+)
+call ".info.surname.required()"
+String Object
+(
+    [_value] => mySurname
+    [_class:protected] => String
+)
+Array
+(
+)
+call ".info.org_email.neq(.confirm_email()"
+
+Parse error: syntax error, unexpected ';', expecting ')' in R:\im4LF\projects\workspace-galileo\qxValidator\qxValidator2.php(62) : eval()'d code on line 1
+
+Call Stack:
+    0.0002      65192   1. {main}() R:\im4LF\projects\workspace-galileo\qxValidator\index.php:0
+    0.0137     602072   2. qxValidator->validate() R:\im4LF\projects\workspace-galileo\qxValidator\index.php:35
+    0.0154    1019056   3. qxValidator->_applyRuleByPath() R:\im4LF\projects\workspace-galileo\qxValidator\qxValidator2.php:21
+    0.0154    1020160   4. qxValidator->_applyRule() R:\im4LF\projects\workspace-galileo\qxValidator\qxValidator2.php:33
+
+Array
+(
+)
+call ".info.confirm_email.eq()"
+"qwe@qwe.qwe"ExtEmail Object
+(
+    [_value] => 
+    [_class:protected] => ExtEmail
+)
+Array
+(
+    [0] => qwe@qwe.qwe
+)
+Array
+(
+    [.login] => Array
+        (
+            [required] => bool(true)
+
+            [min] => bool(true)
+
+            [unique] => bool(true)
+
+        )
+
+    [.password] => Array
+        (
+            [eq] => bool(false)
+
+            [required] => bool(true)
+
+        )
+
+    [.email] => Array
+        (
+            [required] => bool(true)
+
+        )
+
+    [.info.surname] => Array
+        (
+            [required] => bool(true)
+
+        )
+
+    [.info.org_email.neq(] => Array
+        (
+            [confirm_email] => 
+Warning: call_user_method_array(): Second argument is not an object or class name in R:\im4LF\projects\workspace-galileo\qxValidator\qxValidator2.php on line 69
+
+Call Stack:
+    0.0002      65192   1. {main}() R:\im4LF\projects\workspace-galileo\qxValidator\index.php:0
+    0.0137     602072   2. qxValidator->validate() R:\im4LF\projects\workspace-galileo\qxValidator\index.php:35
+    0.0154    1019056   3. qxValidator->_applyRuleByPath() R:\im4LF\projects\workspace-galileo\qxValidator\qxValidator2.php:21
+    0.0154    1020160   4. qxValidator->_applyRule() R:\im4LF\projects\workspace-galileo\qxValidator\qxValidator2.php:33
+    0.0156    1072072   5. call_user_method_array() R:\im4LF\projects\workspace-galileo\qxValidator\qxValidator2.php:69
+
+bool(false)
+
+        )
+
+    [.info.confirm_email] => Array
+        (
+            [eq] => bool(false)
+
+        )
+
+)
