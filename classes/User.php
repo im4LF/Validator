@@ -7,7 +7,14 @@
  * @var Password confirm_password
  * @var Email email [required@first]
  * @var UserInfo info
- * @rules [login.required@first, password.required, email.required]
+ * @rules [login.required@first, password.required]
+ * @rules [email.required]
+ * 
+ * @action login:post/json	ajaxLogin		[before]
+ * @action login:post/*		simpleLogin		[before, after]
+ * @action login:get/*		showLoginForm
+ * 
+ * @action logout:get/*		logout			[after]
  * 
  * <config>
  * User:

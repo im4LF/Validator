@@ -5,6 +5,8 @@
  * @var String company
  * @rules [-info.*name.req*, info.surname.required@first, email.required@first, info.confirm_email.eq(.email)]
  * 
+ * @action login:post/json	ajaxNewLogin [after, -before]
+ * 
  * <config>
  * UserAsPartner:
  *     properties:

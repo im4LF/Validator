@@ -7,7 +7,7 @@
  * @var String lastname
  * @var ExtEmail confirm_email
  * @var ExtEmail org_email
- * @rules [surname.required, firstname.required, lastname.required, org_email.neq(.confirm_email]
+ * @rules [surname.required, firstname.required, lastname.required, org_email.neq(.confirm_email)
  * 
  * <config>
  * UserInfo:

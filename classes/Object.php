@@ -9,8 +9,11 @@ class Object extends DataType {
 		
 		$config = ClassConfig::getInstance()->load($this->_class);	// load configuration of this class				
 		
+		//echo print_r($config, 1);
+		
 		// throughout fields of this class
 		foreach ($config['properties'] as $field => $params) {
+			echo "init $field\n";
 			$this->{$field} = new $params['type']($value[$field]);	// initialize field
 		}
 	}
